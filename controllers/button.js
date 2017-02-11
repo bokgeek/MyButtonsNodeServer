@@ -25,7 +25,9 @@ exports.add = function (req, res) {
     console.log(req.body);
     var button = new Button({
         label: req.body.label,
+        description: req.body.description,
         action: req.body.action,
+        type: req.body.type,
         color: req.body.color,
         user: req.body.user,
         component: req.body.component
@@ -41,7 +43,9 @@ exports.add = function (req, res) {
 exports.update = function (req, res) {
     Button.findById(req.params.id, function (err, button) {
         button.label = req.body.label;
+        button.description = req.body.description;
         button.action = req.body.action;
+        button.type = req.body.type;
         button.color = req.body.color;
         button.user = req.body.user;
         button.component = req.body.component;
@@ -60,5 +64,14 @@ exports.delete = function (req, res) {
             if (err) return res.send(500, err.message);
             res.json({ message: 'Successfully deleted' });
         });
+    });
+};
+
+//DELETEALL - Delete ll registers
+exports.deleteAll = function (req, res) {
+
+    Button.remove(function (err) {
+        if (err) return res.send(500, err.message);
+        res.json({ message: 'Successfully deleted all' });
     });
 };
