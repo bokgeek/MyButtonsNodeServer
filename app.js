@@ -1,3 +1,4 @@
+var cool = require('cool-ascii-faces');
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
@@ -33,6 +34,10 @@ conn.once('open', function() {
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
     app.use(methodOverride());
+
+    app.get('/cool', function(request, response) {
+        response.send(cool());
+    });
 
     // Import Models and Controllers
     var models = require('./models/button')(app, mongoose);
