@@ -57,7 +57,8 @@ conn.once('open', function() {
 
     api.route('/buttons')
     .get(ButtonCtrl.findAll)
-    .post(ButtonCtrl.add);
+    .post(ButtonCtrl.add)
+    .delete(ButtonCtrl.deleteAll);
 
     api.route('/buttons/:id')
     .get(ButtonCtrl.findById)
