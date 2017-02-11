@@ -62,8 +62,8 @@ conn.once('open', function() {
     app.use('/api', api);
 
     // Start server
-    app.listen(3000, function() {
-    console.log("Node server running on http://localhost:3000");
+    app.listen(process.env.PORT || 3000, function() {
+    console.log("Node server running on http://localhost:3000 || " + process.env.PORT);
     });
 });
 
